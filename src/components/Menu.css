@@ -1,0 +1,14 @@
+.Menu {
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 5px 10px;
+  border-bottom: 1px solid #aaa;
+  background-color: #eee;
+}
+
+.Menu.Menu--isDarkTheme {
+  background-color: #3a3a3a;
+  color: #ececec;
+}

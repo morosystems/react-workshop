@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DecreasingSecondCounter Snapshot Renders Text "30 seconds" in dark theme 1`] = `
+<span
+  className="DecreasingSecondCounter DecreasingSecondCounter--isDarkTheme"
+>
+  30 seconds
+</span>
+`;
+
+exports[`DecreasingSecondCounter Snapshot Renders Text "40 seconds" in light theme 1`] = `
+<span
+  className="DecreasingSecondCounter"
+>
+  40 seconds
+</span>
+`;

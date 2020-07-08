@@ -1,0 +1,12 @@
+export const NAME: string = "workers";
+
+export const ADD_WORKERS: string = `${NAME}/ADD_WORKERS`;
+export const SET_WORKER_STARVING: string = `${NAME}/SET_WORKER_STARVING`;
+export const SET_WORKER_PASSAWAY: string = `${NAME}/SET_WORKER_PASSAWAY`;
+export const ASSING_UNEMPLOYED_WORKER_TO_WORK_OCCUPATION: string = `${NAME}/ASSING_UNEMPLOYED_WORKER_TO_WORK_OCCUPATION`;
+export const UNASSING_WORKER_FROM_SAW: string = `${NAME}/UNASSING_WORKER_FROM_SAW`;
+export const UNASSING_WORKER_FROM_FIELD: string = `${NAME}/UNASSING_WORKER_FROM_FIELD`;
+export const WORKER_HAS_EATEN: string = `${NAME}/WORKER_HAS_EATEN`;
+export const WORKERS_HAS_ARRIVED: string = `${NAME}/WORKERS_HAS_ARRIVED`;
+export const SET_WORKER_CAPACITY: string = `${NAME}/SET_WORKER_CAPACITY`;
+export const BUILD_HOUSE: string = `${NAME}/BUILD_HOUSE`;

@@ -1,0 +1,22 @@
+.OptionSwitch {
+  list-style: none;
+  display: inline-flex;
+}
+
+.OptionSwitch__option.OptionSwitch__option--selected {
+  font-weight: bold;
+}
+
+.OptionSwitch__option ~ .OptionSwitch__option:before {
+  content: "|";
+  font-weight: 400;
+  margin-right: 4px;
+}
+
+.OptionSwitch__option ~ .OptionSwitch__option {
+  margin-left: 4px;
+}
+
+.OptionSwitch__option:not(.OptionSwitch__option--selected) {
+  cursor: pointer;
+}

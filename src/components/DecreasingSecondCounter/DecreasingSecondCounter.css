@@ -1,0 +1,12 @@
+/**
+ * UKOL 1.4
+ * styl pro základní classname (použité pro light theme) - barva textu je #696969
+ * styl pro classname s parametrem dark theme - barva textu je #cacaca
+ */
+.DecreasingSecondCounter {
+  color: #696969;
+}
+
+.DecreasingSecondCounter--isDarkTheme {
+  color: #cacaca;
+}
