@@ -1,6 +1,5 @@
-import { IWorker } from "types";
 import { Action } from "redux";
-import { WorkOccupation } from "types";
+
 import {
   ADD_WORKERS,
   ASSING_UNEMPLOYED_WORKER_TO_WORK_OCCUPATION,
@@ -13,6 +12,26 @@ import {
   SET_WORKER_CAPACITY,
   BUILD_HOUSE
 } from "./constants";
+
+export enum Gender {
+  male = "M",
+  female = "F"
+}
+export enum WorkOccupation {
+  saw = "SAW",
+  field = "FIELD",
+  unemployed = "UNEMPLOYED"
+}
+
+export interface IWorker {
+  id: string;
+  name: string;
+  gender: Gender;
+  workOccupation: WorkOccupation;
+  description: string;
+  isStarving: boolean;
+  hasPassed: boolean;
+}
 
 export interface IWorkersState extends Array<IWorker> {
   [key: string]: any;

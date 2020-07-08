@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react";
-import { IWorker } from "types";
+import { IWorker } from "../types";
 
 export type WorkerListProps = {
   workers: Array<IWorker>;

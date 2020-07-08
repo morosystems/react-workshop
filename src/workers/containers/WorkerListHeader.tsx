@@ -1,6 +1,5 @@
 import React, { FunctionComponent } from "react";
-import { GridLayout } from "./GridLayout";
-import { Button } from "./Button";
+import { GridLayout, Button } from "components";
 
 export type WorkerListHeaderProps = {
   title: string;

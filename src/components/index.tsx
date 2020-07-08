@@ -4,8 +4,5 @@ export * from "./ResourceItem";
 export * from "./GridLayout";
 export * from "./OptionSwitch";
 export * from "./ScreenTheme";
-export * from "./WorkerCount";
-export * from "./WorkerList";
-export * from "./WorkerListHeader";
 export * from "./Button";
 export * from "./DecreasingSecondCounter/DecreasingSecondCounter";

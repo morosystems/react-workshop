@@ -1,6 +1,6 @@
 import { Reducer } from "redux";
 import { produce } from "immer";
-import { IWorker, WorkOccupation } from "types";
+import { IWorker, WorkOccupation } from "./types";
 import {
   ADD_WORKERS,
   SET_WORKER_STARVING,

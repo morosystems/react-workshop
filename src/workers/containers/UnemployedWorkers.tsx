@@ -1,9 +1,12 @@
 import React, { FunctionComponent } from "react";
 import { connect, MapStateToProps } from "react-redux";
-import { WorkerListHeader, WorkerList } from "components";
-import {IState, IWorker, NoneOwnProps} from "types";
-import { getUnEmployedWorkers } from "../selectors";
+import { WorkerListHeader } from "./WorkerListHeader";
+import { WorkerList } from "./WorkerList";
 import { i18n } from "i18n";
+import {IState, NoneOwnProps} from "types";
+
+import {IWorker} from "../types";
+import { getUnEmployedWorkers } from "../selectors";
 
 export type UnemployedWorkersProps = {
   workers: Array<IWorker>;

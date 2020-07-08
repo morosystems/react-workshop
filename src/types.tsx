@@ -17,30 +17,9 @@ export enum ResourceType {
   worker
 }
 
-export enum Gender {
-  male = "M",
-  female = "F"
-}
-
-export enum WorkOccupation {
-  saw = "SAW",
-  field = "FIELD",
-  unemployed = "UNEMPLOYED"
-}
-
 export interface ISwitchOption {
   id: number | string;
   name: string;
-}
-
-export interface IWorker {
-  id: string;
-  name: string;
-  gender: Gender;
-  workOccupation: WorkOccupation;
-  description: string;
-  isStarving: boolean;
-  hasPassed: boolean;
 }
 
 export interface IGameConfig {

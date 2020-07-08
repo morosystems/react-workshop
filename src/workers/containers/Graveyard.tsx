@@ -1,9 +1,13 @@
 import React, { FunctionComponent } from "react";
-import { WorkerListHeader, WorkerList } from "components";
-import {IState, IWorker, NoneOwnProps} from "types";
+import { WorkerListHeader } from "./WorkerListHeader";
+import { WorkerList } from "./WorkerList";
 import { MapStateToProps, connect } from "react-redux";
-import { getPassedAwayWorkers } from "../selectors";
+
 import { i18n } from "i18n";
+import {IState, NoneOwnProps} from "types";
+
+import {IWorker} from "../types";
+import { getPassedAwayWorkers } from "../selectors";
 
 export type GraveyardProps = {
   workers: Array<IWorker>;

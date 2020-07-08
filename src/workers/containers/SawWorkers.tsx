@@ -1,13 +1,17 @@
 import React, { FunctionComponent } from "react";
-import { WorkerListHeader, WorkerList } from "components";
-import {IState, IWorker, NoneOwnProps, WorkOccupation} from "types";
 import { connect, MapStateToProps, MapDispatchToProps } from "react-redux";
+
+import { WorkerListHeader } from "./WorkerListHeader";
+import { WorkerList } from "./WorkerList";
+import { i18n } from "i18n";
+import {IState, NoneOwnProps} from "types";
+
+import {IWorker, WorkOccupation} from "../types";
 import { getSawWorkers, getUnEmployedWorkers } from "../selectors";
 import {
   actionAssignUnemployedWorkerToWorkOccupationCreator,
   actionUnAssignWorkerFromFieldCreator
 } from "../actions";
-import { i18n } from "i18n";
 
 export type SawWorkersProps = {
   workers: Array<IWorker>;

@@ -12,7 +12,8 @@ import { Saga, SagaIterator } from "redux-saga";
 import { config } from "config";
 import { storage } from "storage";
 import workersJSON from "workersData";
-import { IGameConfig, IWorker, Gender, WorkOccupation } from "types";
+import { IGameConfig} from "types";
+import { IWorker, Gender, WorkOccupation } from "./types";
 import { ADD_WORKERS, WORKERS_HAS_ARRIVED } from "./constants";
 import { IAddWorkersAction } from "./types";
 import {

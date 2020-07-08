@@ -1,8 +1,8 @@
 import { Selector } from "react-redux";
 import { produce } from "immer";
 import { createSelector } from "reselect";
-import { IWorker, IState, WorkOccupation } from "types";
-
+import { IState } from "types";
+import { IWorker, WorkOccupation } from "./types";
 import { IWorkersState } from "./types";
 
 export const getModule: Selector<IState, IWorkersState> = state => {

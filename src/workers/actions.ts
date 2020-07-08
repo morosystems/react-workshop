@@ -1,4 +1,4 @@
-import { IWorker, WorkOccupation } from "types";
+import { IWorker, WorkOccupation } from "./types";
 
 import {
   WORKER_HAS_EATEN,

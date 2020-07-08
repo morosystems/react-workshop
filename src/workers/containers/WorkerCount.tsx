@@ -1,12 +1,11 @@
 import React, { FunctionComponent } from "react";
-import { IWorker } from "types";
 
 export type WorkerCountProps = {
-  workers: Array<IWorker>;
+  count: number;
 };
 
 export const WorkerCount: FunctionComponent<WorkerCountProps> = ({
-  workers
+  count
 }) => {
-  return <span />;
+  return <span>{count}</span>;
 };
