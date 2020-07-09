@@ -69,7 +69,6 @@ describe("DecreasingSecondCounter", () => {
 
         // po uplynutí dvou cyklů by mělo dojít k stejnému počtu provolání
         expect(onCounterResetMock).toBeCalledTimes(numberOfCycles);
-
         // unmountujeme komponentu aby neběžela v pozadí ostatních testů
         component.unmount();
     });

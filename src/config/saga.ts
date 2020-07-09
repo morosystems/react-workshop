@@ -1,3 +1,3 @@
-import { Saga } from "redux-saga";
+import { Saga, SagaIterator } from "redux-saga";
 
-export const saga: Saga = function* saga() {};
+export const saga: Saga = function* saga(): SagaIterator {};

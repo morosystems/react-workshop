@@ -1,16 +1,17 @@
 import { Action } from "redux";
 import { TOGGLE_DARK_THEME } from "./constants";
-import { IGameConfig } from "types";
+import { IGameRules } from "types";
 
 export interface IConfigState {
   isDarkTheme: boolean;
-  gameConfig: IGameConfig;
+  gameRules: IGameRules;
 }
 
 export interface IToggleDarkThemeAction
-  extends Action<typeof TOGGLE_DARK_THEME> {}
+  extends Action<typeof TOGGLE_DARK_THEME> {
+}
 
-export class GameConfig implements IGameConfig {
+export class GameRules implements IGameRules {
   workerGoal: number = 100;
   houseCapacity: number = 5;
   workerArrivalSeconds: number = 45;

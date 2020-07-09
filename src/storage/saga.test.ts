@@ -3,13 +3,13 @@ import {expectSaga, testSaga} from "redux-saga-test-plan";
 import {EffectProviders, StaticProvider} from "redux-saga-test-plan/providers";
 
 import { config } from "config";
+import {IWorker} from 'types';
 import {
   actionAddFoodCreator,
   actionSetWorkerCapacityCreator
 } from "./actions";
 import {saga, initStorageSaga, fieldProductionSaga, sawProductionSaga} from './saga';
 import {workers} from "../workers";
-import {Gender, IWorker, WorkOccupation} from "../types";
 
 describe("skladiště - sága", () => {
   const rootSagaProviders: EffectProviders | StaticProvider[] = [
@@ -44,8 +44,8 @@ describe("skladiště - sága", () => {
       const singleFiledWorkerMock: Array<IWorker> = [{
         id: "0x0",
         name: "rollin",
-        gender: Gender.male,
-        workOccupation: WorkOccupation.field,
+        gender: workers.Gender.male,
+        workOccupation: workers.WorkOccupation.field,
         description: 'stone',
         isStarving: false,
         hasPassed: false,

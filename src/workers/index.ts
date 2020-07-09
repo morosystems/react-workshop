@@ -4,6 +4,7 @@ import { reducer } from "./reducer";
 import { saga } from "./saga";
 import { getSawWorkers, getFieldWorkers, getWorkerCount } from "./selectors";
 import { actionWorkersHasArrivedCreator } from "./actions";
+import { Gender, WorkOccupation } from "./types";
 
 /**
  * Ukol 2
@@ -19,5 +20,7 @@ export const workers = {
   getSawWorkers,
   getFieldWorkers,
   getWorkerCount,
-  actionWorkersHasArrivedCreator
+  actionWorkersHasArrivedCreator,
+  Gender,
+  WorkOccupation
 };

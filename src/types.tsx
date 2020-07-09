@@ -22,7 +22,7 @@ export interface ISwitchOption {
   name: string;
 }
 
-export interface IGameConfig {
+export interface IGameRules {
   workerGoal: number;
   houseCapacity: number;
   workerArrivalSeconds: number;
@@ -91,3 +91,6 @@ type TypedObjectBase<T> = { [key: string]: T };
  * Generický typ pro objekt.
  */
 export type TypedObject<T> = Readonly<TypedObjectBase<T>>;
+
+// @ts-ignore
+export {IWorker} from './workers/types';
