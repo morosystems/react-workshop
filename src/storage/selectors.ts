@@ -2,9 +2,11 @@ import { Selector } from "react-redux";
 import { createSelector } from "reselect";
 import { IState } from "types";
 import { IStorageState } from "./types";
+import {getGameModel} from "../selectors";
+
 
 export const getModule: Selector<IState, IStorageState> = (state) => {
-  return state.storage;
+  return getGameModel(state).storage;
 };
 
 /**

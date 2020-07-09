@@ -91,6 +91,3 @@ type TypedObjectBase<T> = { [key: string]: T };
  * Generický typ pro objekt.
  */
 export type TypedObject<T> = Readonly<TypedObjectBase<T>>;
-
-// @ts-ignore
-export {IWorker} from './workers/types';

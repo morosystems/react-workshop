@@ -4,9 +4,10 @@ import { createSelector } from "reselect";
 import { IState } from "types";
 import { IWorker, WorkOccupation } from "./types";
 import { IWorkersState } from "./types";
+import {getGameModel} from "../selectors";
 
 export const getModule: Selector<IState, IWorkersState> = state => {
-  return state.workers;
+  return getGameModel(state).workers;
 };
 
 export const getWorkerById: Selector<IState, IWorker | undefined, string> = (

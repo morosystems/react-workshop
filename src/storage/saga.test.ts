@@ -3,13 +3,14 @@ import {expectSaga, testSaga} from "redux-saga-test-plan";
 import {EffectProviders, StaticProvider} from "redux-saga-test-plan/providers";
 
 import { config } from "config";
-import {IWorker} from 'types';
 import {
   actionAddFoodCreator,
   actionSetWorkerCapacityCreator
 } from "./actions";
 import {saga, initStorageSaga, fieldProductionSaga, sawProductionSaga} from './saga';
 import {workers} from "../workers";
+
+interface IWorker {}
 
 describe("skladiště - sága", () => {
   const rootSagaProviders: EffectProviders | StaticProvider[] = [
