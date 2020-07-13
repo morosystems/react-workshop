@@ -109,6 +109,7 @@ definování rozhraní modulu, zapojení konterjneru modulu, napojení kontejner
 2. zapojení modulu workers
     * do src/App je potřeba zapojit kontejner exportovaný workers modulem
     * do src/reducers je potřeba zapojit reducer exportovaného workers modulem
+    * v src/saga je potřeba spustit ságu exportovanou workers modulem
 3. doplnění kontejneru src/workers/containers/UnemployedWorkers" bude zobrazovat přehled nezaměstnaných pracovníků
     * použití připravených komponent
         * WorkerListHeader - zobrazuje lokalizovaný nadpis, použijeme selektor i18n.getMessage(state, "unemployed")
@@ -122,14 +123,19 @@ vytvoření modulu, akcí, reduceru, selectoru
 
 ###Postup
 1. v souboru src/storage/types.ts
-    * vytvoření interface pro sklad IStorage  bude obsahovat množství dřeva a jídla
+    * vytvoření interface pro sklad IStorage bude obsahovat množství dřeva a jídla
     * vytvoření interface IResourcesState stav našeho modulu, bude obsahovat typování skladu a kapacity provníků
 2. v souboru  src/resources/reducer.ts doplnění defaultních hodnot pro reducery storage a workerCapacity
 3. vytvoření selektorů getWoodAmount, getFoodAmount, getWorkerCapacity v src/storage/selectors.ts
 4. zapojení getWoodAmount, getFoodAmount, getWorkerCapacity  v src/storage/Container.tsx 
 5. vytvoření akcí WOOD_PRODUCED, FOOD_PRODUCED, REMOVE_FOOD, BUILD_HOUSE v src/storage/constants.ts
 6. vytvoření action creatorů actionWoodProducedCreator(amount), actionFoodProducedCreator(amount), actionRemoveWoodCreator(amount), actionBuildHouseCreator(capacity, cost) v src/stroage/actions.ts
-7. aplikování akcí v src/resources/reducer.ts
+7. aplikování akcí v src/storage/reducer.ts
+8. exportujeme NAME (název modulu uložený v konstantách), ságu, reducer a Container /src/storage/index.ts
+9. zapojení modulu workers
+    * do src/App je potřeba zapojit kontejner exportovaný workers modulem
+    * do src/reducers je potřeba zapojit reducer exportovaného workers modulem
+    * v src/saga je potřeba spustit ságu exportovanou workers modulem
 ##Úkol 4 - ságy
 ###Cíl úkolu
 generování surovin 

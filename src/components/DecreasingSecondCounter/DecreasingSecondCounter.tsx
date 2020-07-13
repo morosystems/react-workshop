@@ -1,7 +1,4 @@
-import React, { useState, useEffect, FunctionComponent } from "react";
-import { bemClassNames } from "bemClassNames";
-
-const classname = bemClassNames("DecreasingSecondCounter");
+import React, { FunctionComponent } from "react";
 
 export type DecreasingSecondCounterProps = {
   msg: string;
@@ -31,19 +28,4 @@ export type DecreasingSecondCounterProps = {
 
 export const DecreasingSecondCounter: FunctionComponent<
   DecreasingSecondCounterProps
-> = ({ startValue, onCounterReset, msg, isDarkTheme }) => {
-  const [counter, setCounter] = useState(startValue);
-  useEffect(() => {
-    if (counter > 0) {
-      setTimeout(() => {
-        setCounter(counter - 1);
-      }, 1000);
-    } else {
-      setCounter(startValue);
-      onCounterReset();
-    }
-  }, [startValue, onCounterReset, counter, setCounter]);
-  return (
-    <span className={classname({ isDarkTheme })}>{`${counter} ${msg}`}</span>
-  );
-};
+> = () => <span />;

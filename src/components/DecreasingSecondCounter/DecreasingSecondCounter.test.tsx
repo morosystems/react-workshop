@@ -1,8 +1,6 @@
-import React from 'react';
-import {mount, shallow} from "enzyme";
 import { act } from 'react-dom/test-utils';
 
-import {DecreasingSecondCounter, DecreasingSecondCounterProps} from "./DecreasingSecondCounter";
+import {DecreasingSecondCounterProps} from "./DecreasingSecondCounter";
 
 // protože chceme testovat setTimeout, seInterval funkce
 jest.useFakeTimers();
@@ -17,17 +15,16 @@ describe("DecreasingSecondCounter", () => {
      * 4. vygenerujeme/updatujee snapshoty pomocí příkazové řádky npm run test:update-snapshots
      */
     describe("Snapshot", () => {
+        // @ts-ignore
         const sharedProps: Pick<DecreasingSecondCounterProps, "onCounterReset" | "msg"> = {
             onCounterReset: () => {},
             msg: "seconds",
         };
         it("Renders Text \"30 seconds\" in dark theme", () => {
-            const props: DecreasingSecondCounterProps = {...sharedProps, isDarkTheme: true, startValue: 30}
-            expect(shallow(<DecreasingSecondCounter{...props} />)).toMatchSnapshot();
+            // TODO
         });
         it("Renders Text \"40 seconds\" in light theme", () => {
-            const props: DecreasingSecondCounterProps = {...sharedProps, isDarkTheme: false, startValue: 40}
-            expect(shallow(<DecreasingSecondCounter{...props} />)).toMatchSnapshot();
+            // TODO
         });
     });
 
@@ -43,32 +40,24 @@ describe("DecreasingSecondCounter", () => {
      *      https://jestjs.io/docs/en/timer-mocks
      */
     it("On counter reset callback is called after startValue seconds", () => {
-        const onCounterResetMock = jest.fn();
-        const props: DecreasingSecondCounterProps = {
-            msg: "counter text",
-            startValue: 2,
-            isDarkTheme: false,
-            onCounterReset: onCounterResetMock,
-        };
+        // vytvoříme mock callbacku pomocí jest.fn() (přiřadíme do proměnné např. onCounterResetMock)
 
         // provedeme na mountování komponenty
-        const component = mount(
-            <DecreasingSecondCounter {...props} />
-        );
-        // po namountování by nemělo dojít k provolání callbacku
-        expect(onCounterResetMock).not.toBeCalled();
+
+        // po namountování by nemělo dojít k provolání callbacku ozkoušíme pomocí not.toBeCalled()
 
         // počet cyklů setTimout o které se chceme posunout
+        // @ts-ignore
         const numberOfCycles = 2;
-        // posuneme timery setTimeout, setInterval funcí
+
         // pokud chceme simulovat přesné chování reactu musíme obalit do act
         act(() => {
-            jest.advanceTimersByTime(1000 * props.startValue * numberOfCycles);
+            // posuneme timery setTimeout, setInterval funcí jest.advanceTimersByTime()
         });
 
         // po uplynutí dvou cyklů by mělo dojít k stejnému počtu provolání
-        expect(onCounterResetMock).toBeCalledTimes(numberOfCycles);
+
         // unmountujeme komponentu aby neběžela v pozadí ostatních testů
-        component.unmount();
+
     });
 });
