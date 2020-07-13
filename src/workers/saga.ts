@@ -78,7 +78,6 @@ export const workerEatingLoopSaga: Saga = function* workerEatingLoopSaga(
     const hasFood: ReturnType<typeof storage.hasStorageAnyFood> = yield select(
       storage.hasStorageAnyFood
     );
-    yield call(console.log, "workerEatingLoopSaga", worker, { hasFood });
     if (hasFood) {
       yield put(storage.actionRemoveFoodCreator(1));
       yield put(actionWorkerHasEatenCreator(worker.id));
@@ -142,7 +141,6 @@ export const newWorkersArrivalSaga: Saga = function* newWorkersArrivalSaga(): Sa
   const freeCapacity = actualWorkersCapacity - actualWorkersCount;
   const newWorkersCount =
     freeCapacity >= arrivalWorkersCount ? arrivalWorkersCount : freeCapacity;
-  console.log({ newWorkersCount });
   if (newWorkersCount > 0) {
     yield put(
       actionAddWorkersCreator(

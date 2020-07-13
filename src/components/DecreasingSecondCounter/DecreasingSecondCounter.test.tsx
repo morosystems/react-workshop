@@ -9,7 +9,7 @@ jest.useFakeTimers();
 
 describe("DecreasingSecondCounter", () => {
     /**
-     * Snapshot testy
+     * 5. Snapshot testy
      * otestujeme zda komponenta renderuje text obsahující počáteční počet vteřin v light theme i dark theme módu.
      * 1. napíšeme test pomocí expect(...) https://jestjs.io/docs/en/expect#expectvalue testujeme námi vygenerovaný DOM se snapshotem
      * 2. na porovnání se snapshotem použijeme expect(...).toMatchSnapshot() https://jestjs.io/docs/en/expect#tomatchsnapshotpropertymatchers-hint
@@ -32,15 +32,14 @@ describe("DecreasingSecondCounter", () => {
     });
 
     /**
-     * Unit test
-     * 5. otestujeme že námi předaný callback je provolán po uplnynutí dané doby
+     * 5. Unit test
+     * otestujeme že námi předaný callback je provolán po uplnynutí dané doby
      *  - vytvoříme mock callbacku pomocí jest.fn() (přiřadíme do proměnné např. onCounterResetMock)
      *  - vytvoříme shallow render komponenty stejně jako v bodu 3, předáme mock
      *  - po uplynutí danné doby otestujem, že náš mock byl provolán
      *      - na otestování použíjeme expect(...).toBe(1)
      *      - počet provolání zjístíme přímo z mocku onCounterResetMock.mock.calls.length
      *      component.unmount();
-     *
      *      https://jestjs.io/docs/en/timer-mocks
      */
     it("On counter reset callback is called after startValue seconds", () => {

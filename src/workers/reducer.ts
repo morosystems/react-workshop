@@ -17,7 +17,6 @@ const workers: Reducer<Array<IWorker>> = (state = [], action) => {
       return draft.concat(action.payload.workers);
     });
   } else if (action.type === SET_WORKER_STARVING) {
-    console.log(state);
     return produce(state, draft => {
       const workerIndex = draft.findIndex(
         worker => worker.id === action.payload.workerId
