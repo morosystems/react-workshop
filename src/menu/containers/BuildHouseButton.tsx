@@ -37,7 +37,7 @@ type StateProps = {
 };
 
 const mapStateToProps: MapStateToProps<StateProps, NoneOwnProps, IState> = state => {
-  const {houseCapacity, houseWoodCost} = config.getGameConfig(state);
+  const {houseCapacity, houseWoodCost} = config.getGameRules(state);
   return {
     houseCapacity,
     houseWoodCost,

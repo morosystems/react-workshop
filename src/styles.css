@@ -1,5 +1,9 @@
 @import "./components/index.css";
 
+div {
+  box-sizing: border-box;
+}
+
 body,
 html,
 #root,

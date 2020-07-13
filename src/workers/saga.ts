@@ -39,34 +39,34 @@ export const saga: Saga = function* saga(): SagaIterator {
 };
 
 export const initWorkersSaga: Saga = function* initWorkersSaga(): SagaIterator {
-  const gameConfig: ReturnType<typeof config.getGameConfig> = yield select(
-    config.getGameConfig
+  const gameRules: ReturnType<typeof config.getGameRules> = yield select(
+    config.getGameRules
   );
   const workers: ReturnType<typeof parseWorkers> = yield call(parseWorkers);
   // mutation!
   yield put(
-    actionAddWorkersCreator(workers.slice(0, gameConfig.startingWorkers))
+    actionAddWorkersCreator(workers.slice(0, gameRules.startingWorkers))
   );
 };
 
 export const runNewWorkersLifecicleSaga: Saga = function* runNewWorkersLifecicleSaga(
   action: IAddWorkersAction
 ): SagaIterator {
-  const gameConfig: ReturnType<typeof config.getGameConfig> = yield select(
-    config.getGameConfig
+  const gameRules: ReturnType<typeof config.getGameRules> = yield select(
+    config.getGameRules
   );
   const newWorkersEatingSagas = action.payload.workers.map(worker =>
-    fork(workerEatingLoopSaga, gameConfig, worker.id)
+    fork(workerEatingLoopSaga, gameRules, worker.id)
   );
   yield all(newWorkersEatingSagas);
 };
 
 export const workerEatingLoopSaga: Saga = function* workerEatingLoopSaga(
-  gameConfig: IGameRules,
+  gameRules: IGameRules,
   workerId: string
 ): SagaIterator {
   while (true) {
-    yield delay(gameConfig.unEmployedWorkerStarvationSeconds * 1000);
+    yield delay(gameRules.unEmployedWorkerStarvationSeconds * 1000);
     const worker: ReturnType<typeof getWorkerById> = yield select(
       getWorkerById,
       workerId
@@ -94,36 +94,36 @@ export const workerEatingLoopSaga: Saga = function* workerEatingLoopSaga(
 };
 
 export const fieldWorkersProductionSaga: Saga = function* workerEatingLoopSaga(): SagaIterator {
-  const gameConfig: ReturnType<typeof config.getGameConfig> = yield select(
-    config.getGameConfig
+  const gameRules: ReturnType<typeof config.getGameRules> = yield select(
+    config.getGameRules
   );
   while (true) {
-    yield delay(gameConfig.fieldProductionSeconds * 1000);
+    yield delay(gameRules.fieldProductionSeconds * 1000);
     const filedWorkers: ReturnType<typeof getFieldWorkers> = yield select(
       getFieldWorkers
     );
     if (filedWorkers.length > 0)
       yield put(
         storage.actionAddFoodCreator(
-          filedWorkers.length * gameConfig.fieldProductionPerWorkerRatio
+          filedWorkers.length * gameRules.fieldProductionPerWorkerRatio
         )
       );
   }
 };
 
 export const sawWorkersProductionSaga: Saga = function* workerEatingLoopSaga(): SagaIterator {
-  const gameConfig: ReturnType<typeof config.getGameConfig> = yield select(
-    config.getGameConfig
+  const gameRules: ReturnType<typeof config.getGameRules> = yield select(
+    config.getGameRules
   );
   while (true) {
-    yield delay(gameConfig.sawProductionSeconds * 1000);
+    yield delay(gameRules.sawProductionSeconds * 1000);
     const sawWorkers: ReturnType<typeof getSawWorkers> = yield select(
       getSawWorkers
     );
     if (sawWorkers.length > 0)
       yield put(
         storage.actionAddWoodCreator(
-          sawWorkers.length * gameConfig.sawProductionPerWorkerRatio
+          sawWorkers.length * gameRules.sawProductionPerWorkerRatio
         )
       );
   }

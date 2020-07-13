@@ -31,7 +31,7 @@ describe("skladiště - sága", () => {
     it("načte ze store konfiguraci hry a dispatchne akci pro nastavení kapacity pracovníků", () => {
       testSaga(initStorageSaga)
               .next()
-              .select(config.getGameConfig)
+              .select(config.getGameRules)
               .next(gameConfigMock)
               .put(actionSetWorkerCapacityCreator(gameConfigMock.startingWorkerCapacity))
               .next()
@@ -53,7 +53,7 @@ describe("skladiště - sága", () => {
       }];
       testSaga(fieldProductionSaga)
           .next()
-          .select(config.getGameConfig)
+          .select(config.getGameRules)
           .next(gameConfigMock)
           .delay(gameConfigMock.fieldProductionSeconds * 1000)
           .next()
@@ -61,7 +61,7 @@ describe("skladiště - sága", () => {
           .next(singleFiledWorkerMock)
           .put(actionAddFoodCreator(singleFiledWorkerMock.length * gameConfigMock.fieldProductionPerWorkerRatio))
           .next()
-          .select(config.getGameConfig) // new cycle
+          .select(config.getGameRules) // new cycle
           .finish()
     });
 
@@ -69,13 +69,13 @@ describe("skladiště - sága", () => {
       const noFiledWorkersMock: Array<IWorker> = [];
       testSaga(fieldProductionSaga)
           .next()
-          .select(config.getGameConfig)
+          .select(config.getGameRules)
           .next(gameConfigMock)
           .delay(gameConfigMock.fieldProductionSeconds * 1000)
           .next()
           .select(workers.getFieldWorkers)
           .next(noFiledWorkersMock)
-          .select(config.getGameConfig) //new cycle
+          .select(config.getGameRules) //new cycle
           .finish()
     });
   })

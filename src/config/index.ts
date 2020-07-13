@@ -8,7 +8,7 @@ export const config = {
   NAME,
   reducer,
   saga,
-  getGameConfig: getGameRules,
+  getGameRules,
   isDarkTheme,
   actionToggleDarkThemeCreator,
 };

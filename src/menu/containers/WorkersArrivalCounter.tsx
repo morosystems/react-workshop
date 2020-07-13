@@ -35,7 +35,7 @@ type StateProps = Pick<
 >;
 
 const mapStateToProps: MapStateToProps<StateProps, NoneOwnProps, IState> = state => ({
-  workerArrivalSeconds: config.getGameConfig(state).workerArrivalSeconds,
+  workerArrivalSeconds: config.getGameRules(state).workerArrivalSeconds,
   isDarkTheme: config.isDarkTheme(state),
   msg: i18n.getMessage(state, "secondsToWorkersArraival")
 });
