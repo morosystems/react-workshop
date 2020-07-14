@@ -13,16 +13,16 @@
 `yarn run test:update-snapshots`
 
 
-#Popis aplikace
+# Popis aplikace
 cílem je doplnit existující React web aplikaci/hru za využití reduxu a ság, tak aby reflektovala zadání.
 
-#Základní jednotky
+# Základní jednotky
 * dřevo
 * jídlo 
 * pracovníci
 * kapacita domů (maximální počet pracovníků)
 
-#Základní mechanismus
+# Základní mechanismus
 * cílem hry je dosáhnout 100 populace
     * hráč musí stavět domy a produkovat jídlo aby dosáhl vyšší populace
 * každých 45s přijdou 3 nových pracovníci
@@ -56,14 +56,14 @@ cílem je doplnit existující React web aplikaci/hru za využití reduxu a ság
 # Zadání workshopových úkolů
 _pozn. mechanismy aplikace mimo zadání budu již připravené._
 
-##Úkol 1 -  Přidání react komponenty
-###Cíl úkolu
+## Úkol 1 -  Přidání react komponenty
+### Cíl úkolu
 Přidání komponenty, která nám bude ukazovat čas do příchodu nových pracovníků do horní lišty
 
-###Co si zkusíme?
+### Co si zkusíme?
 implementace komponenty, hooky, theming, testování komponenty
 
-###Postup
+### Postup
 Je připravena kostra komponenty /src/components/DecreasingSecondCounter.tsx
 
 1. pro rozhraní použijeme propsy msg, startValue, isDarkTheme, onCounterReset
@@ -86,7 +86,7 @@ Je připravena kostra komponenty /src/components/DecreasingSecondCounter.tsx
         1. napíšeme test pomocí expect(...) https://jestjs.io/docs/en/expect#expectvalue testujeme námi vygenerovaný DOM se snapshotem
         2. na porovnání se snapshotem použijeme expect(...).toMatchSnapshot() https://jestjs.io/docs/en/expect#tomatchsnapshotpropertymatchers-hint
         3. pomocí enzyme funkce shallow provedeme shallow render DecreasingSecondCounter https://enzymejs.github.io/enzyme/docs/api/shallow.html
-        4. vygenerujeme/updatujee snapshoty pomocí příkazové řádky npm run test:update-snapshots
+        4. vygenerujeme/updatujeme snapshoty pomocí příkazové řádky npm run test:update-snapshots
     * Unit test
         * otestujeme že námi předaný callback je provolán po uplnynutí dané doby
              1. vytvoříme mock callbacku pomocí jest.fn() (přiřadíme do proměnné např. onCounterResetMock)
@@ -94,15 +94,15 @@ Je připravena kostra komponenty /src/components/DecreasingSecondCounter.tsx
              3. po uplynutí danné doby otestujem, že náš mock byl provolán
                 * na otestování použíjeme expect(...).toBe(1)
                 * počet provolání zjístíme přímo z mocku onCounterResetMock.mock.calls.length
-                * component.unmount();
-##Ukol 2 - zapojení modulu pracovníků
-###Cíl úkolu
+             4. unmountujeme komponentycomponent.unmount();
+## Úkol 2 - zapojení modulu pracovníků
+### Cíl úkolu
 zobrazení pracovníků v aplikaci
 
-###Co si zkusíme?
+### Co si zkusíme?
 definování rozhraní modulu, zapojení konterjneru modulu, napojení kontejneru na redux
 
-###Postup
+### Postup
 1. definice rozhraní v souboru /src/workers/index.ts
     * exportujme modul - používáme named exporty export const workers = { ... }
     * je třeba exportovat NAME (název modulu uložený v konstantách), ságu, reducer a Container
@@ -114,14 +114,14 @@ definování rozhraní modulu, zapojení konterjneru modulu, napojení kontejner
     * použití připravených komponent
         * WorkerListHeader - zobrazuje lokalizovaný nadpis, použijeme selektor i18n.getMessage(state, "unemployed")
         * WorkerList - zobrazuje jména nezměstnaných pracovníků, ty získáme ze stavu pomocí selektoru z definovaného v src/workers/selecectors.ts
-##Úkol 3 - vytvoření modulu skladiště
-###Cíl úkolu
+## Úkol 3 - vytvoření modulu skladiště
+### Cíl úkolu
 vytvoření modulu skladiště 
 
-###Co si zkusíme?
+### Co si zkusíme?
 vytvoření modulu, akcí, reduceru, selectoru
 
-###Postup
+### Postup
 1. v souboru src/storage/types.ts
     * vytvoření interface pro sklad IStorage bude obsahovat množství dřeva a jídla
     * vytvoření interface IResourcesState stav našeho modulu, bude obsahovat typování skladu a kapacity provníků
@@ -136,14 +136,14 @@ vytvoření modulu, akcí, reduceru, selectoru
     * do src/App je potřeba zapojit kontejner exportovaný workers modulem
     * do src/reducers je potřeba zapojit reducer exportovaného workers modulem
     * v src/saga je potřeba spustit ságu exportovanou workers modulem
-##Úkol 4 - ságy
-###Cíl úkolu
+## Úkol 4 - ságy
+### Cíl úkolu
 generování surovin 
 
-###Co si zkusíme?
+### Co si zkusíme?
 tvorba ságy, efekty, tvorba util funkce, testy na ságu a util funkci
 
-###Postup
+### Postup
 1. v src/storage/saga doplníme ságy pro genrerování surovin
 2. ságy pro dřevo/jídlo budou mít stejné chování, jen počítat s jinými hodnotami
 3. v nekonečném cyklu budem opakovat
@@ -168,14 +168,14 @@ tvorba ságy, efekty, tvorba util funkce, testy na ságu a util funkci
         * ujistíme se že sága doběhla pomocí .isDone()
         * pokud je sága v nekončeném cyklu, testujeme jeden cyklus a ukončíme ji pomocí .finish()
 ## Úkol 5 - optimalizace
-###Cíl úkolu
+### Cíl úkolu
 Optimalizace překreslování
 
-###Co si zkusíme?
+### Co si zkusíme?
 normalizace stavu a překreslování
 
-###Postup
-1. nomalizovat stav pracovníků, každá z podskupin by měla mít vlastní reducer obsahující id dané podskupiny. (např. unemployedWorkerIds)
+### Postup
+1. normalizovat stav pracovníků, každá z podskupin by měla mít vlastní reducer obsahující id dané podskupiny. (např. unemployedWorkerIds)
 2. List komponenta bude napojená a iterovat přes list id vytvořený v prvním bodu
 3. Komponenta řádku obdrží id daného řádku a pak pomocí reselectu na základě daného id vybere příslušný záznam z workers
 ## Úkol 6 - samostatná práce
