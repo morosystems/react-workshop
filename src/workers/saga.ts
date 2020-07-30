@@ -75,6 +75,10 @@ export const workerEatingLoopSaga: Saga = function* workerEatingLoopSaga(
     if (worker === undefined) {
       throw new Error("workerEatingLoopSaga, worker is undefined");
     }
+    if(worker.hasPassed){// mrtvoly nejedí - ukončíme ságu tohoto workra
+      return;
+    }
+
     const hasFood: ReturnType<typeof storage.hasStorageAnyFood> = yield select(
       storage.hasStorageAnyFood
     );
