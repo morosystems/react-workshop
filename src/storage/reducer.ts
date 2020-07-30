@@ -24,7 +24,7 @@ const storage: Reducer<IStorage> = (
     });
   } else if (action.type === REMOVE_FOOD) {
     return produce(state, draft => {
-      draft.foodAmount = Math.min(draft.foodAmount - action.payload.amount, 0);
+      draft.foodAmount = Math.max(draft.foodAmount - action.payload.amount, 0);
     });
   } else if (action.type === ADD_WOOD) {
     return produce(state, draft => {
