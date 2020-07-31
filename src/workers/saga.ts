@@ -23,18 +23,14 @@ import {
   actionWorkerHasEatenCreator
 } from "./actions";
 import {
-  getFieldWorkers,
-  getSawWorkers,
   getWorkerById,
   getAllWorkerCount
 } from "./selectors";
 
 export const saga: Saga = function* saga(): SagaIterator {
   yield fork(initWorkersSaga);
-  yield fork(fieldWorkersProductionSaga);
-  yield fork(sawWorkersProductionSaga);
 
-  yield takeEvery(ADD_WORKERS, runNewWorkersLifecicleSaga);
+  yield takeEvery(ADD_WORKERS, runNewWorkersLifecycleSaga);
   yield takeEvery(WORKERS_HAS_ARRIVED, newWorkersArrivalSaga);
 };
 
@@ -49,7 +45,7 @@ export const initWorkersSaga: Saga = function* initWorkersSaga(): SagaIterator {
   );
 };
 
-export const runNewWorkersLifecicleSaga: Saga = function* runNewWorkersLifecicleSaga(
+export const runNewWorkersLifecycleSaga: Saga = function* runNewWorkersLifecicleSaga(
   action: IAddWorkersAction
 ): SagaIterator {
   const gameRules: ReturnType<typeof config.getGameRules> = yield select(
@@ -93,42 +89,6 @@ export const workerEatingLoopSaga: Saga = function* workerEatingLoopSaga(
         yield put(actionSetWorkerStarvingCreator(worker.id));
       }
     }
-  }
-};
-
-export const fieldWorkersProductionSaga: Saga = function* workerEatingLoopSaga(): SagaIterator {
-  const gameRules: ReturnType<typeof config.getGameRules> = yield select(
-    config.getGameRules
-  );
-  while (true) {
-    yield delay(gameRules.fieldProductionSeconds * 1000);
-    const filedWorkers: ReturnType<typeof getFieldWorkers> = yield select(
-      getFieldWorkers
-    );
-    if (filedWorkers.length > 0)
-      yield put(
-        storage.actionAddFoodCreator(
-          filedWorkers.length * gameRules.fieldProductionPerWorkerRatio
-        )
-      );
-  }
-};
-
-export const sawWorkersProductionSaga: Saga = function* workerEatingLoopSaga(): SagaIterator {
-  const gameRules: ReturnType<typeof config.getGameRules> = yield select(
-    config.getGameRules
-  );
-  while (true) {
-    yield delay(gameRules.sawProductionSeconds * 1000);
-    const sawWorkers: ReturnType<typeof getSawWorkers> = yield select(
-      getSawWorkers
-    );
-    if (sawWorkers.length > 0)
-      yield put(
-        storage.actionAddWoodCreator(
-          sawWorkers.length * gameRules.sawProductionPerWorkerRatio
-        )
-      );
   }
 };
 
