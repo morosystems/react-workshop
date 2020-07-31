@@ -10,7 +10,7 @@ import {IWorker, WorkOccupation} from "../types";
 import { getSawWorkers, getUnEmployedWorkers } from "../selectors";
 import {
   actionAssignUnemployedWorkerToWorkOccupationCreator,
-  actionUnAssignWorkerFromFieldCreator
+  actionUnAssignWorkerFromSawCreator,
 } from "../actions";
 
 export type SawWorkersProps = {
@@ -60,7 +60,7 @@ const mapDispatchToProps: MapDispatchToProps<
     dispatch(
       actionAssignUnemployedWorkerToWorkOccupationCreator(WorkOccupation.saw)
     ),
-  onRemoveClick: () => dispatch(actionUnAssignWorkerFromFieldCreator())
+  onRemoveClick: () => dispatch(actionUnAssignWorkerFromSawCreator())
 });
 
 export const SawWorkers = connect(
