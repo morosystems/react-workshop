@@ -1,0 +1,113 @@
+Příkazy a kód pro kapitolu customizace.
+
+1.
+npm install --save @bem-react/classname@1.5.6
+
+2.
+npm install --save-dev @types/enzyme@^3.10.5 @types/enzyme-adapter-react-16@^1.0.6 @types/jest@^24.0.17 @types/react@^16.9.19 @types/react-dom@^16.9.5 @types/react-redux@7.1.3 @types/react-virtualized@^9.21.4 @types/sinon@^7.0.13 enzyme@^3.9.0 enzyme-adapter-react-16@^1.14.0 jest@^25.3.0 redux-saga-test-plan@^4.0.0-rc.3 sinon@^9.0.2 immer@^5.3.4
+
+3.
+"jsx": "react",
+"moduleResolution": "node",
+"allowSyntheticDefaultImports": true,
+"esModuleInterop": true,
+
+4.
+externals: [
+    "react", "react-dom", "react-redux", "redux", "redux-saga", {reselect: "Reselect"},
+    "react-virtualized", "immer",
+]
+
+5.
+npm install --save react-toggle@4.1.1
+
+6.
+npm install --save-dev @types/react-toggle@4.0.2
+
+7.
+"baseUrl": "./",
+"paths": {
+    "config/types": ["./src/workshop/config/types.ts"],
+    "config": ["./src/workshop/config"],
+    "workers/types": ["./src/workshop/workers/types.ts"],
+    "workers": ["./src/workshop/workers"],
+    "storage/types": ["./src/workshop/storage/types.ts"],
+    "storage": ["./src/workshop/storage"],
+    "i18n/types": ["./src/workshop/i18n/types.ts"],
+    "i18n": ["./src/workshop/i18n"],
+    "components": ["./src/workshop/components"],
+    "workersData": ["./src/workshop/workersData.tsx"],
+    "types": ["./src/workshop/types.tsx"],
+	  "bemClassNames": ["./src/workshop/bemClassNames.ts"],
+}
+
+8.
+alias: {
+  "config/types": path.join(__dirname, "./src/workshop/config/types.ts"),
+  "config": path.join(__dirname, "./src/workshop/config"),
+  "workers/types": path.join(__dirname, "./src/workshop/workers/types.ts"),
+  "workers": path.join(__dirname, "./src/workshop/workers"),
+  "storage/types": path.join(__dirname, "./src/workshop/storage/types.ts"),
+  "storage": path.join(__dirname, "./src/workshop/storage"),
+  "i18n/types": path.join(__dirname, "./src/workshop/i18n/types.ts"),
+  "i18n": path.join(__dirname, "./src/workshop/i18n"),
+  "components": path.join(__dirname, "./src/workshop/components"),
+  "workersData": path.join(__dirname, "./src/workshop/workersData.tsx"),
+  "types": path.join(__dirname, "./src/workshop/types.tsx"),
+  "bemClassNames": path.join(__dirname, "./src/workshop/bemClassNames.ts"),
+}
+
+9.
+import React from "react";
+import MainContainer from "./components/MainContainer";
+import App from "./App";
+
+export default () => (
+    <MainContainer>
+      <App />
+    </MainContainer>
+);
+
+10.
+//Import all components styles here.
+@import (css) "./src/workshop/styles.css";
+@import (css) "~react-toggle/style.css";
+
+11.
+import {createRegisterReplaceableComponents} from "UI/UI.React/customization/index";
+import {ReplaceableComponentNames} from "UI/UI.React/menu/customization/index";
+import {ReduxRegistrator} from "UI/UI.React/customization/index";
+import {MainForm} from "UI/UI/DefaultInterface/MainForm";
+import MyReactComponent from "./src/workshop/StoreProvider";
+import {reducer} from "./src/workshop/reducers";
+import {saga} from "./src/workshop/saga";
+
+const registerReplaceableComponents = createRegisterReplaceableComponents({
+    [ReplaceableComponentNames.UserMenuComponent]: MyReactComponent,
+});
+
+MainForm.registrations.add(() => {
+    ReduxRegistrator.addReducer("workshop", reducer);
+    ReduxRegistrator.addSaga(saga);
+    registerReplaceableComponents();
+});
+
+12.
+export const getGameModel: Selector<any, IState> = (state) => state.customization.workshop as IState;
+
+13.
+module.exports = async function () {
+    return {
+        ...
+        initParams: {
+            ...
+            dependencies:[
+                {"name": "MyReactComponent", "file": "MyReactComponent/workshop"},
+            ],
+            styles: ["multiweb.css", "MyReactComponent/workshop.css"],
+        },
+    };
+}
+
+14.
+Storybook link: https://teaf.tescosw.cz/mw/storybook/?path=/story/customizace--%C3%BAvod
