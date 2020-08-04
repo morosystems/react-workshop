@@ -10,7 +10,7 @@ import {
 } from "./containers";
 
 type MenuContainerProps = {
-  storage: React.ReactNode;
+  storage: React.ReactElement;
 };
 
 export const MenuContainer: FunctionComponent<MenuContainerProps> = ({
@@ -24,7 +24,7 @@ export const MenuContainer: FunctionComponent<MenuContainerProps> = ({
           <BuildHouseButton />
         </GridLayout>
       }
-      rightConent={
+      rightContent={
         <GridLayout horizontalSpace={15} isVerticalCenter>
           <WorkersArrivalCounter />
           <LocalizationOptionSwitch />

@@ -4,18 +4,18 @@ import { bemClassNames } from "bemClassNames";
 const classname = bemClassNames("Menu");
 
 export type MenuProps = {
-  leftContent: React.ReactNode;
-  rightConent: React.ReactNode;
-  isDarkTheme: boolean;
+    leftContent: React.ReactElement;
+    rightContent: React.ReactElement;
+    isDarkTheme: boolean;
 };
 
 export const Menu: FunctionComponent<MenuProps> = ({
-  leftContent,
-  rightConent,
-  isDarkTheme
+    leftContent,
+    rightContent,
+    isDarkTheme
 }) => (
-  <div className={classname({ isDarkTheme })}>
-    <div className={classname("left-content")}>{leftContent}</div>
-    <div className={classname("right-content")}>{rightConent}</div>
-  </div>
+    <div className={classname({ isDarkTheme })}>
+        <div className={classname("left-content")}>{leftContent}</div>
+        <div className={classname("right-content")}>{rightContent}</div>
+    </div>
 );
